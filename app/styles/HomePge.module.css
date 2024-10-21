@@ -1,0 +1,52 @@
+.container{
+    width: 100%;
+}
+.smallContainer{
+    display: flex;
+    background-color: hsl(207, 26%, 17%);
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-around;
+}
+.smallContainerL{
+    display: flex;
+    background-color: hsl(0, 6%, 96%);
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-around;
+}
+.sCon{
+    background-color: hsl(209, 23%, 22%);
+    margin: 10px;
+    height: 300px;
+    width: 280px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+.sConL{
+    cursor: pointer;
+    background-color: white;
+    margin: 10px;
+    height: 300px;
+    width: 280px;
+    border-radius: 5px;
+}
+.img{
+    height: 150px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    width: 100%;
+}
+.text{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.text h3{
+    font-weight: 800;
+}
+.text span{
+    font-weight: 600;
+}

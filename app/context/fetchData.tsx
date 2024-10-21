@@ -36,8 +36,10 @@ interface DataContextType {
   data: Country[];
   error: Error | null;
   loading: boolean;
-  light:boolean
-  setLight:React.Dispatch<React.SetStateAction<boolean>>
+  light:boolean;
+  setLight:React.Dispatch<React.SetStateAction<boolean>>;
+  value: string;
+  setValue:React.Dispatch<React.SetStateAction<string>>
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -51,6 +53,7 @@ export const DataProvider:React.FC<DataProviderProps> = ({ children }) => {
     const [error, setError] = useState<Error | null>(null);
     const [loading, setLoading] = useState(true);
     const [light, setLight]=useState(true)
+    const [value, setValue]=useState('')
 
     useEffect(() => {
         const fetchData = async () => {
@@ -72,7 +75,7 @@ export const DataProvider:React.FC<DataProviderProps> = ({ children }) => {
     }, []);
 
     return (
-        <DataContext.Provider value={{ data, light,setLight, error, loading }}>
+        <DataContext.Provider value={{ data, value,setValue,light,setLight, error, loading }}>
             {loading ? <div>Loading...</div> : children}
         </DataContext.Provider>
     );
