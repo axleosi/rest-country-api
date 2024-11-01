@@ -5,18 +5,14 @@ import { useDataContext } from '../context/fetchData';
 import { useRouter } from 'next/navigation';
 
 const Searchbar = () => {
-  const{light,data,setLight,value,setValue}=useDataContext()
+  const{light,data,setLight,value,setValue,handleSelectChange}=useDataContext()
   const router=useRouter()
-
-  const handleClick=(newRegion:string)=>{
-    data.filter(datas=>datas.region=== newRegion)
-  }
 
   const handleCountryClick = (e: React.KeyboardEvent,countryName: string) => {
 
     if(e.key==='Enter'){
       setValue('');
-      e.preventDefault;
+      e.preventDefault();
       router.push(`/HomePage/${countryName}`);
     }
   };
@@ -32,10 +28,11 @@ const Searchbar = () => {
                <p>{value}</p>
             </div>
             <div className={styles.selectC}>
-                <select className={light?styles.selectL:styles.select}>
+                <select className={light?styles.selectL:styles.select} onChange={handleSelectChange}>
                     <option value=""disabled selected>Filter by Region</option>
-                    <option value="Africa" onClick={()=>{handleClick('Africa')}}>Africa</option>
-                    <option value="America" onClick={()=>{handleClick('Africa')}}>America</option>
+                    <option value="" >All</option>
+                    <option value="Africa" >Africa</option>
+                    <option value="Americas">America</option>
                     <option value="Asia">Asia</option>
                     <option value="Europe">Europe</option>
                     <option value="Oceania">Oceania</option>

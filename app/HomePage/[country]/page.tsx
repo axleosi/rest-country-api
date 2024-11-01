@@ -2,13 +2,14 @@
 import { useDataContext } from '@/app/context/fetchData'
 import Link from 'next/link';
 import React, { useState,useEffect } from 'react'
+import styles from './Country.module.css'
 
 interface Country {
     name: {
         common: string;
         official: string;
         nativeName:{
-          eng:{
+          [language:string]:{
             official:string;
             common:string;
           }
@@ -38,7 +39,7 @@ interface Country {
   
 
 const Country = ({params}:{params:{country:string}}) => {
-  const{value}=useDataContext()
+  const{value, light}=useDataContext()
   const [data, setData]=useState<Country[]>([]);
   const [loading, setLoading]=useState(true)
   const [error, setError]=useState<Error | null>(null)
@@ -65,37 +66,48 @@ const Country = ({params}:{params:{country:string}}) => {
 
 
   return (
-    <div>
-        <Link href='/HomePage'>Back</Link>
-        <div>
+    <div className={light ? styles.containerL : styles.container}>
+      <div className={styles.sCon}>
+        <Link href='/HomePage' className={light? styles.backL:styles.back}>Back</Link>
+        <div className={styles.main}>
           {data.map((datas)=>(
-            <div>
+            <div className={styles.bigCon}>
               <img src={datas.flags.png}/>
-              <div>
+              <div className={styles.conR}>
                 <h1>{datas.name.common}</h1>
-                <div></div>
-                <div>
-                  <p>Border Countries</p>
+                <div className={styles.textCon}>
+                  <div>
+                    <p><span>Native Name:</span> {datas.name.nativeName.eng?.official || datas.name.nativeName.fra?.official || 'N/A'}</p>
+                    <p><span>Population:</span> {datas.population}</p>
+                    <p><span>Region:</span> {datas.region}</p>
+                    <p><span>Sub Region:</span> {datas.subregion}</p>
+                    <p><span>Capital:</span> {datas.capital}</p>
+                  </div>
+                  <div>
+                    <p><span>Top Level Domain:</span> {datas.tld}</p>
+                    <p><span>Currencies:</span> {datas.currencies.SHP?.name}</p>
+                    <p><span>Language:</span> </p>
+                  </div>
+                </div>
+                <div className={styles.border}>
+                  <p><span>Border Countries:</span></p>
+                  <div className={styles.borderI}>
                   {datas.borders && datas.borders.length > 0 ? (
-                    datas.borders.map((border)=>{
-                      console.log(border)
-                      const bro=data.find((country)=>{
-                        console.log('checking:', country.cca3)
-                        return country.cca3=== border;
-                      });
-                      return(
-                        <li>{bro? bro.name.common: 'unknown country'}</li>
-                      )
-                    })
+                    datas.borders.map((border)=>(
+                      
+                      <p className={light? styles.borderTL: styles.borderT}>{border}</p>
+                      
+                    ))
                   ) : (
                   <p>No border country</p>
                   )}
-                  
+                  </div>
                 </div>
               </div>
             </div>
         ))}
         </div>
+      </div>
     </div>
   )
 }
