@@ -6,7 +6,7 @@ import Searchbar from '../components/Searchbar'
 import styles from '../styles/HomePge.module.css'
 
 const HomePage = () => {
-    const {data,light,error,loading}=useDataContext()
+    const {data,light,loading}=useDataContext()
     const router=useRouter()
 
     console.log(data);
@@ -20,6 +20,7 @@ const HomePage = () => {
       return <p>Loading...</p>;
   }
 
+  
   return (
     <div className={styles.container}>
         <Searchbar/>
