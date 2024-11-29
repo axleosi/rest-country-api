@@ -25,7 +25,6 @@ const Searchbar = () => {
             <div className={light?styles.searchL:styles.search}>
                <FaSearch />
                <input type='text' placeholder='Search for a country..' onKeyDown={(e)=>{handleCountryClick(e,value)}} value={value} className={light?styles.inputL:styles.input} onChange={handleChange}/>
-               <p>{value}</p>
             </div>
             <div className={styles.selectC}>
                 <select className={light?styles.selectL:styles.select} onChange={handleSelectChange}>
