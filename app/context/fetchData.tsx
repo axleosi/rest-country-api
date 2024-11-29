@@ -83,6 +83,9 @@ export const DataProvider:React.FC<DataProviderProps> = ({ children }) => {
     setSelectedRegion(newRegion);
   };
 
+  useEffect(() => {
+    fetchCountries('');
+  }, []);
     return (
         <DataContext.Provider value={{ data,handleSelectChange, value,setValue,light,setLight, error, loading }}>
             {loading ? <div>Loading...</div> : children}

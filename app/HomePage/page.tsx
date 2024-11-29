@@ -20,19 +20,11 @@ const HomePage = () => {
       return <p>Loading...</p>;
   }
 
-  if (error) {
-      return <p>Error: {error.message}</p>;
-  }
-
-  // If no data, display a message
-  if (!data || data.length === 0) {
-      return <p>No countries found</p>;
-  }
   return (
     <div className={styles.container}>
         <Searchbar/>
         <div className={light?styles.smallContainerL:styles.smallContainer} >
-          {data.map((country, index) => (
+          {data ? (data.map((country, index) => (
                 <div key={index} className={light?styles.sConL:styles.sCon}  onClick={() => handleCountryClick(country.name.common)}>
                     <img src={country.flags.png} alt={country.flags.alt} className={styles.img}/>
                     <div className={styles.text}>
@@ -42,7 +34,8 @@ const HomePage = () => {
                       <p><span>Capital:</span> {country.capital}</p>
                     </div>
                 </div>
-          ))}
+          ))):
+          <p>Refresh Page</p>}
 
         </div>
         
