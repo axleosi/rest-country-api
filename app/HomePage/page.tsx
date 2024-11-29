@@ -17,6 +17,8 @@ const HomePage = () => {
     <div className={styles.container}>
         <Searchbar/>
         <div className={light?styles.smallContainerL:styles.smallContainer} >
+          {loading && <p>Loading...</p>}
+          {error && <p>Error: {error.message}</p>}
           {data.map((country, index) => (
                 <div key={index} className={light?styles.sConL:styles.sCon}  onClick={() => handleCountryClick(country.name.common)}>
                     <img src={country.flags.png} alt={country.flags.alt} className={styles.img}/>

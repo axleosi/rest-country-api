@@ -5,7 +5,7 @@ import { useDataContext } from '../context/fetchData';
 import { useRouter } from 'next/navigation';
 
 const Searchbar = () => {
-  const{light,data,setLight,value,setValue,handleSelectChange}=useDataContext()
+  const{light,value,setValue,handleSelectChange}=useDataContext()
   const router=useRouter()
 
   const handleCountryClick = (e: React.KeyboardEvent,countryName: string) => {

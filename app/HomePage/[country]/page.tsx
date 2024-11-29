@@ -62,7 +62,7 @@ const Country = ({params}:{params:{country:string}}) => {
     };
 
     fetchData();
-}, [value]);
+}, [encode, value]);
 
 
   return (
@@ -70,8 +70,10 @@ const Country = ({params}:{params:{country:string}}) => {
       <div className={styles.sCon}>
         <Link href='/HomePage' className={light? styles.backL:styles.back}>Back</Link>
         <div className={styles.main}>
+          {loading && <p>Loading...</p>}
+          {error && <p>Error: {error.message}</p>}
           {data.map((datas)=>(
-            <div className={styles.bigCon}>
+            <div key={datas.cca3} className={styles.bigCon}>
               <img src={datas.flags.png}/>
               <div className={styles.conR}>
                 <h1>{datas.name.common}</h1>
@@ -95,7 +97,7 @@ const Country = ({params}:{params:{country:string}}) => {
                   {datas.borders && datas.borders.length > 0 ? (
                     datas.borders.map((border)=>(
                       
-                      <p className={light? styles.borderTL: styles.borderT}>{border}</p>
+                      <p key={border} className={light? styles.borderTL: styles.borderT}>{border}</p>
                       
                     ))
                   ) : (
