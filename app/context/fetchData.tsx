@@ -81,10 +81,7 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
     fetchCountries(selectedRegion);
   }, [selectedRegion]);  // This ensures that data is re-fetched when `selectedRegion` changes
 
-  // Initial fetch when DataProvider mounts
-  useEffect(() => {
-    fetchCountries(selectedRegion);
-  }, []);  // The empty dependency array ensures it runs only once when the component mounts
+  
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newRegion = e.target.value;
