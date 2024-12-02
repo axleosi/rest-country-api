@@ -75,11 +75,16 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
       setLoading(false);
     }
   };
-
-  
   useEffect(() => {
     fetchCountries('');
   }, []);
+  
+  // Fetch countries whenever selectedRegion changes
+  useEffect(() => {
+    fetchCountries(selectedRegion);
+  }, [selectedRegion]);  // This ensures that data is re-fetched when `selectedRegion` changes
+
+  
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newRegion = e.target.value;
